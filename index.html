@@ -2,6 +2,23 @@
   
 </head>
 <body>
-  <h1>Hello World!</h1>
-  <button src="main.html">main</button>
+  <div id="player"></div>
 </body>
+<script>
+  var player;
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '0',
+      width: '0',
+      videoId: 'VIDEO_ID_FROM_SEARCH', // You'll get this from your search function
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  function onPlayerReady(event) {
+    event.target.playVideo();
+  }
+</script>
+<script src="https://www.youtube.com/iframe_api"></script>
