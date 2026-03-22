@@ -11,7 +11,6 @@
         button { padding: 10px 20px; border-radius: 5px; border: none; background: #1db954; color: white; cursor: pointer; font-weight: bold; }
         button:hover { background: #1ed760; }
         #status { margin-top: 20px; color: #b3b3b3; }
-        /* Keeping the player tiny but visible to satisfy YT terms */
         #player { margin-top: 20px; border-radius: 10px; }
     </style>
 </head>
@@ -28,11 +27,9 @@
 </div>
 
 <script>
-    // 1. GET YOUR KEY: https://console.cloud.google.com/apis/library/youtube.googleapis.com
     const API_KEY = 'AIzaSyBgRlgy7seujgUCFL5QOuB9UkRs1RDda3w'; 
     let player;
 
-    // Load the YouTube IFrame API
     const tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     const firstScriptTag = document.getElementsByTagName('script')[0];
@@ -42,7 +39,7 @@
         player = new YT.Player('player', {
             height: '200',
             width: '350',
-            videoId: '', // Starts empty
+            videoId: '',
             playerVars: { 'autoplay': 1, 'playsinline': 1 }
         });
     }
@@ -57,7 +54,6 @@
         status.innerText = "Searching...";
 
         try {
-            // Search for the song + "official audio" to get high quality
             const searchUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(query + " official audio")}&type=video&maxResults=1&key=${API_KEY}`;
             
             const response = await fetch(searchUrl);
